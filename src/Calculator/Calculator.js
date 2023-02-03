@@ -1,4 +1,5 @@
 import "./Calculator.css";
+import Wrapper from "./UI/Wrapper";
 import React, { useState } from "react";
 
 const Calculator = () => {
@@ -13,7 +14,7 @@ const Calculator = () => {
     console.log(displayValue);
   };
   return (
-    <div className="calculator">
+    <Wrapper className="calculator">
       <div className="display">{displayValue}</div>
       <div className="keypad">
         <button className="operator">C</button>
@@ -57,7 +58,7 @@ const Calculator = () => {
         <button className="operator"></button>
         <button className="operator">=</button>
       </div>
-    </div>
+    </Wrapper>
   );
 };
 
