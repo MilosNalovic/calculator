@@ -1,4 +1,5 @@
+import "./Wrapper.css";
 const Wrapper = (props) => {
-  return <div className={props.className}>{props.children}</div>;
+  return <div className="wrapper">{props.children}</div>;
 };
 export default Wrapper;

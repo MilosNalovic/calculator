@@ -1,63 +1,39 @@
-import "./Calculator.css";
 import Wrapper from "./UI/Wrapper";
+import Display from "./UI/Display";
+import ButtonBox from "./UI/ButtonBox";
+import Button from "./UI/Button";
 import React, { useState } from "react";
+const btnValues = [
+  ["C", "+-", "%", "/"],
+  [7, 8, 9, "X"],
+  [4, 5, 6, "-"],
+  [1, 2, 3, "+"],
+  [0, ".", "="],
+];
 
 const Calculator = () => {
-  const [displayValue, setDisplayValue] = useState("0");
-
-  const clickHander = (value) => {
-    if (displayValue === "0") {
-      setDisplayValue(value);
-    } else {
-      setDisplayValue(displayValue + value);
-    }
-    console.log(displayValue);
-  };
+  let [calc, setCalc] = useState({
+    sign: "",
+    num: 0,
+    res: 0,
+  });
   return (
-    <Wrapper className="calculator">
-      <div className="display">{displayValue}</div>
-      <div className="keypad">
-        <button className="operator">C</button>
-        <button className="operator">CE</button>
-        <button className="operator">{"\u2190"}</button>
-        <button className="operator">/</button>
-        <button className="number" onClick={() => clickHander("7")}>
-          7
-        </button>
-        <button className="number" onClick={() => clickHander("8")}>
-          8
-        </button>
-        <button className="number" onClick={() => clickHander("9")}>
-          9
-        </button>
-        <button className="operator">*</button>
-        <button className="number" onClick={() => clickHander("4")}>
-          4
-        </button>
-        <button className="number" onClick={() => clickHander("5")}>
-          5
-        </button>
-        <button className="number" onClick={() => clickHander("6")}>
-          6
-        </button>
-        <button className="operator">-</button>
-        <button className="number" onClick={() => clickHander("1")}>
-          1
-        </button>
-        <button className="number" onClick={() => clickHander("2")}>
-          2
-        </button>
-        <button className="number" onClick={() => clickHander("3")}>
-          3
-        </button>
-        <button className="operator">+</button>
-        <button className="operator">.</button>
-        <button className="number" onClick={() => clickHander("0")}>
-          0
-        </button>
-        <button className="operator"></button>
-        <button className="operator">=</button>
-      </div>
+    <Wrapper>
+      <Display value={calc.num ? calc.num : calc.res} />
+      <ButtonBox>
+        {btnValues.flat().map((btn, i) => {
+          return (
+            <Button
+              key={i}
+              className={btn === "=" ? "equals " : ""}
+              value={btn}
+              onClick={() => {
+                console.log(`${btn} clicked`);
+              }}
+            />
+          );
+        })}
+      </ButtonBox>
     </Wrapper>
   );
 };
